@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:tns="http://services.ws.inquiry.ru/" xmlns:ns1="http://ws.ezags.ru/types/" targetNamespace="http://services.ws.inquiry.ru/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!--
+  EZAGS-149: 
+  changes:
+    [+] sendAnswerExistenceofRecord method and it's arguments
+  date: 07.09.2011
+  author: Svyatoslav Gulin 
+  
+  --> 
+  <xs:import schemaLocation="types.xsd" namespace="http://ws.ezags.ru/types/" />
+  <xs:element name="getAnswerAboutPerson" type="tns:getAnswerAboutPerson" />
+  <xs:element name="getAnswerAboutPersonResponse" type="tns:getAnswerAboutPersonResponse" />
+  <xs:element name="sendAnswerExistenceofRecord" type="tns:sendAnswerExistenceofRecord" />
+  <xs:element name="getPerformanceStateInquiry" type="tns:getPerformanceStateInquiry" />
+  <xs:element name="getPerformanceStateInquiryResponse" type="tns:getPerformanceStateInquiryResponse" />
+  <xs:element name="putInquiryAboutPerson" type="tns:putInquiryAboutPerson" />
+  <xs:element name="putInquiryAboutPersonResponse" type="tns:putInquiryAboutPersonResponse" />
+  <xs:element name="putInquiryExistenceOfRecord" type="tns:putInquiryExistenceOfRecord" />
+  <xs:element name="putInquiryExistenceOfRecordResponse" type="tns:putInquiryExistenceOfRecordResponse" />
+  <xs:complexType name="putInquiryAboutPerson">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="inquiry" type="tns:inquiryAboutPerson" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inquiryAboutPerson">
+    <xs:annotation>
+      <xs:documentation>Запрос в орган ЗАГС на поиск информации о гражданах</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="registrarNameIdentity" type="ns1:registrarNameIdentity">
+        <xs:annotation>
+          <xs:documentation>Идентификатор органа ЗАГС, в который необходимо отправить запрос</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="nameDocument" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Наименование отправляемого документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="registrationNumber" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер отправляемого документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="dispatchDate" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>Дата отправки документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="requestingOrganization" type="tns:correspondentOrganization">
+        <xs:annotation>
+          <xs:documentation>Информация об организации, отправившей запрос</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="searchObjects" type="tns:listOfObjectsSearch">
+        <xs:annotation>
+          <xs:documentation>Список объектов поиска. 
+  Каждый объект поиска содержит критерии поиска,
+  по комбинации которых будет произведен отдельный поиск</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="correspondentOrganization">
+    <xs:annotation>
+      <xs:documentation>Организация - корреспондент</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="type" type="tns:organizationType">
+        <xs:annotation>
+          <xs:documentation>Тип запрашивающей организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="organizationName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Наименование организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="legalAddress" type="ns1:fullAddress">
+        <xs:annotation>
+          <xs:documentation>Юридический адрес</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="index" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Индекс</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listOfObjectsSearch">
+    <xs:annotation>
+      <xs:documentation>Список объектов поиска. 
+ Каждый объект поиска содержит критерии поиска,
+ по комбинации которых будет произведен отдельный поиск</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="item" nillable="true" type="tns:objectSearch">
+        <xs:annotation>
+          <xs:documentation>Список объектов поиска. 
+  Каждый объект поиска содержит критерии поиска,
+  по комбинации которых будет произведен отдельный поиск</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="objectSearch">
+    <xs:annotation>
+      <xs:documentation>Объект поиска. 
+ По комбинации содержащихся в нем критерям поиска будет произведен поиск записей актов</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="requiredSubj" type="ns1:person">
+        <xs:annotation>
+          <xs:documentation>Информация об искомом субъекте записи акта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="requiredActRecord" type="tns:requiredActRecord">
+        <xs:annotation>
+          <xs:documentation>Реквизиты искомой записи акта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="deathDate" type="ns1:dateRecord">
+        <xs:annotation>
+          <xs:documentation>Дата смерти.
+  Заполняется в случае поиска записей актов о смерти</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="searchBirth" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Искать записи акта о рождении</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="searchMarriage" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Искать записи акта о заключении брака</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="searchDivorce" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Искать записи акта о расторжении брака</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="searchFiliation" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Искать записи акта об установлении отцовства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="searchAdoption" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Искать записи акта об усыновлении</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="searchNameChange" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Искать записи акта о перемене имени</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="searchDeath" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Искать записи акта о смерти</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="requiredActRecord">
+    <xs:annotation>
+      <xs:documentation>Критерии поиска записи акта</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="ns1:actRecordRequisites">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="type" type="ns1:actRecordType">
+            <xs:annotation>
+              <xs:documentation>Вид записи акта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="putInquiryAboutPersonResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendAnswerExistenceofRecord">
+    <xs:annotation>
+      <xs:documentation>Метод для получения ответа о наличии записи акта
+  Результат - ответ о наличии записи акта</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="inquiryIdentifier" type="xs:string" />
+	  <xs:element minOccurs="0" name="answerExistenceOfRecord" type="tns:answerExistenceOfRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="answerExistenceOfRecord">
+    <xs:annotation>
+      <xs:documentation>Ответ о наличии записи акта</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="inquiryIdentifier" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Идентификатор запроса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="registrarNameIdentity" type="ns1:registrarNameIdentity">
+        <xs:annotation>
+          <xs:documentation>Идентификатор органа ЗАГС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="resultSearch" type="tns:existenceOfRecordType">
+        <xs:annotation>
+          <xs:documentation>Результат поиска записи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="putInquiryExistenceOfRecord">
+    <xs:annotation>
+      <xs:documentation>Метод для отправки запроса о наличии записи акта
+  Результат - идентификатор запроса</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="inquiry" type="tns:inquiryExistenceOfRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inquiryExistenceOfRecord">
+    <xs:annotation>
+      <xs:documentation>Запрос на поиск записи акта по ее реквизитам</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:requiredActRecord">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="registrarNameIdentity" type="ns1:registrarNameIdentity">
+            <xs:annotation>
+              <xs:documentation>Идентификатор органа ЗАГС, в который необходимо отправить запрос</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="dispatchDate" type="xs:dateTime">
+            <xs:annotation>
+              <xs:documentation>Дата отправки документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="putInquiryExistenceOfRecordResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAnswerAboutPerson">
+    <xs:annotation>
+      <xs:documentation>Метод для получения ответа на поиск информации о гражданах в орган ЗАГС
+  Результат - ответ из органа ЗАГС с результатами поиска информации о гражданах</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="inquiryIdentifier" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAnswerAboutPersonResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:answerAboutPerson" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="answerAboutPerson">
+    <xs:annotation>
+      <xs:documentation>Ответ из органа ЗАГС с результатами поиска информации о гражданах</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="inquiryIdentifier" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Идентификатор запроса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="registrarNameIdentity" type="ns1:registrarNameIdentity">
+        <xs:annotation>
+          <xs:documentation>Идентификатор органа ЗАГС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="nameDocument" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Наименование отправляемого документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="registrationNumberInquiry" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер запроса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="dispatchInquiryDate" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>Дата отправки запроса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="registrationNumberAnswer" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер ответа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="dispatchAnswerDate" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>Дата отправки ответа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="responsibleOrganization" type="tns:correspondentOrganization">
+        <xs:annotation>
+          <xs:documentation>Информация об организации, отправившей ответ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="resultsSearch" type="tns:listOfResultsSearch">
+        <xs:annotation>
+          <xs:documentation>Список результатов поиска</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listOfResultsSearch">
+    <xs:annotation>
+      <xs:documentation>Список результатов поиска</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="item" nillable="true" type="tns:resultSearch">
+        <xs:annotation>
+          <xs:documentation>Список результатов поиска</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="resultSearch">
+    <xs:annotation>
+      <xs:documentation>Результат поиска по отдельному объекту поиска</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="objectSearch" type="tns:objectSearch">
+        <xs:annotation>
+          <xs:documentation>Объект поиска</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="birthActRecordInfo" type="tns:listOfBirthActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию
+  из найденной одной записи о рождении</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="marriageActRecordInfo" type="tns:listOfMarriageActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию
+  из найденной одной записи о заключении брака</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="divorceActRecordInfo" type="tns:listOfDivorceActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию
+  из найденной одной записи о расторжении брака</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="adoptionActRecordInfo" type="tns:listOfAdoptionActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию
+  из найденной одной записи об установлении отцовства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="filiationActRecordInfo" type="tns:listOfFiliationActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию
+  из найденной одной записи об усыновлении</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="nameChangeActRecordInfo" type="tns:listOfNameChangeActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию
+  из найденной одной записи о перемене имени</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="deathActRecordInfo" type="tns:listOfDeathActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию
+  из найденной одной записи о смерти</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listOfBirthActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта о рождении, 
+ найденной по заданным критериям поиска</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="item" nillable="true" type="tns:birthActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта о рождении,
+  найденной по заданным критериям поиска</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="birthActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Информация из записи акта о рождении</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="ns1:actRecordRequisites">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="child" type="ns1:child">
+            <xs:annotation>
+              <xs:documentation>Сведения о ребёнке</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="father" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Сведения об отце</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="mother" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Сведения о матери</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="listOfMarriageActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта о заключении брака,
+ найденной по заданным критериям поиска</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="item" nillable="true" type="tns:marriageActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта о заключении брака,
+  найденной по заданным критериям поиска</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="marriageActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Информация из записи акта о заключении брака</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="ns1:actRecordRequisites">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="groom" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Сведения о женихе (до заключения брака)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="bride" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Сведения о невесте (до заключения брака)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="newLastNameOfHusb" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Фамилия мужа после заключения брака</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="newLastNameOfWife" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Фамилия жены после заключения брака</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="listOfDivorceActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта о расторжении брака,
+ найденной по заданным критериям поиска</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="item" nillable="true" type="tns:divorceActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта о расторжении брака,
+  найденной по заданным критериям поиска</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="divorceActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Информация из записи акта о расторжении брака</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="ns1:actRecordRequisites">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="husband" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Сведения о муже</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="wife" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Сведения о жене</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="newLastNameOfHusb" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Фамилия мужа после расторжения брака</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="newLastNameOfWife" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Фамилия жены после расторжения брака</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="listOfAdoptionActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта об усыновлении,
+ найденной по заданным критериям поиска</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="item" nillable="true" type="tns:adoptionActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта об усыновлении,
+  найденной по заданным критериям поиска</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="adoptionActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Информация из записи акта об усыновлении</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="ns1:actRecordRequisites">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="childBefore" type="ns1:child">
+            <xs:annotation>
+              <xs:documentation>Ребёнок до усыновления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="childAfter" type="ns1:child">
+            <xs:annotation>
+              <xs:documentation>Ребёнок после усыновления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="father" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Сведения об отце</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="mother" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Сведения о матери</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="adopter" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Сведения о первом усыновителе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="adopter2" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Второй усыновитель</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="listOfFiliationActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта об установлении отцовства,
+ найденной по заданным критериям поиска</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="item" nillable="true" type="tns:filiationActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта об установлении отцовства,
+  найденной по заданным критериям поиска</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="filiationActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Информация из записи акта об установлении отцовства</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="ns1:actRecordRequisites">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="child" type="ns1:child">
+            <xs:annotation>
+              <xs:documentation>Сведения о ребёнке</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="newChildInitials" type="ns1:personInitials">
+            <xs:annotation>
+              <xs:documentation>Фамилия имя и отчество после установления отцовства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="father" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Сведения об отце</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="mother" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Сведения о матери</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="listOfNameChangeActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта о перемене имени,
+ найденной по заданным критериям поиска</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="item" nillable="true" type="tns:nameChangeActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта о перемене имени,
+  найденной по заданным критериям поиска</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="nameChangeActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Информация из записи акта о перемене имени</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="ns1:actRecordRequisites">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="personBefore" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Сведения о человеке до перемены имени</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="initialsAfter" type="ns1:personInitials">
+            <xs:annotation>
+              <xs:documentation>Фамилия, имя и отчество после перемены имени</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="listOfDeathActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта о смерти, 
+ найденной по заданным критериям поиска</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="item" nillable="true" type="tns:deathActRecordInfo">
+        <xs:annotation>
+          <xs:documentation>Список, каждый элемент которого содержит информацию из записи акта о смерти,
+  найденной по заданным критериям поиска</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deathActRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Информация из записи акта о смерти</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="ns1:actRecordRequisites">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dead" type="ns1:person">
+            <xs:annotation>
+              <xs:documentation>Сведения об умершем</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="deathDate" type="ns1:dateRecord">
+            <xs:annotation>
+              <xs:documentation>Дата смерти</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="deathDate2" type="ns1:dateRecord">
+            <xs:annotation>
+              <xs:documentation>Вторая дата смерти</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="deathPlace" type="ns1:shortAddress">
+            <xs:annotation>
+              <xs:documentation>Место смерти</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="causeOfDeath" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Причина смерти</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="getPerformanceStateInquiry">
+    <xs:annotation>
+      <xs:documentation>Метод для отслеживания хода исполнения запроса
+  Результат - состояние исполнения запроса</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="inquiryIdentifier" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPerformanceStateInquiryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:performanceState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="performanceState">
+    <xs:annotation>
+      <xs:documentation>Состояние исполнения запроса</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="inquiryIdentifier" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Идентификатор запроса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="registrarIdentity" type="ns1:registrarNameIdentity">
+        <xs:annotation>
+          <xs:documentation>Идентификатор органа ЗАГС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="status" type="tns:performanceType">
+        <xs:annotation>
+          <xs:documentation>Статус исполнения запроса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="details" type="tns:listOfPerformanceDetails">
+        <xs:annotation>
+          <xs:documentation>Хронологический список деталей исполнения запроса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listOfPerformanceDetails">
+    <xs:annotation>
+      <xs:documentation>Хронологический список деталей исполнения запроса</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="item" nillable="true" type="tns:performanceDetail">
+        <xs:annotation>
+          <xs:documentation>Хронологический список деталей исполнения запроса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="performanceDetail">
+    <xs:annotation>
+      <xs:documentation>Описание событие, происходившего при исполнении запроса</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="consecutiveNumber" type="xs:int">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер в хронологическом списке описания событий</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="dateEvent" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>Дата события</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="status" type="tns:performanceType">
+        <xs:annotation>
+          <xs:documentation>Статус события</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="comment" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Комментарии</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="registrarIdentity" type="ns1:registrarNameIdentity">
+        <xs:annotation>
+          <xs:documentation>Идентификатор органа ЗАГС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="registrarIdentityTo" type="ns1:registrarNameIdentity">
+        <xs:annotation>
+          <xs:documentation>Идентификатор органа ЗАГС, в который был переадресован запрос.
+  Заполняется в случае переадресации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="organizationType">
+    <xs:annotation>
+      <xs:documentation>Вид организации - корреспондента</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="other_organization">
+        <xs:annotation>
+          <xs:documentation>Прочие органы</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="civil_registry">
+        <xs:annotation>
+          <xs:documentation>Орган ЗАГС</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="body_of_inquiry">
+        <xs:annotation>
+          <xs:documentation>Орган дознания</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="court">
+        <xs:annotation>
+          <xs:documentation>Суд</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="prosecutor_office">
+        <xs:annotation>
+          <xs:documentation>Прокуратура</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="bailiff_service">
+        <xs:annotation>
+          <xs:documentation>Служба судебных приставов</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="body_of_corrections">
+        <xs:annotation>
+          <xs:documentation>Орган исполнения наказаний</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="guardianship_authority">
+        <xs:annotation>
+          <xs:documentation>Орган опеки и попечительства</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="medical_organization">
+        <xs:annotation>
+          <xs:documentation>Медицинская организация</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="migration_service">
+        <xs:annotation>
+          <xs:documentation>Орган ФМС</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="existenceOfRecordType">
+    <xs:annotation>
+      <xs:documentation>Существование записи акта</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="undefined">
+        <xs:annotation>
+          <xs:documentation>Значение не определено</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="record_is_found">
+        <xs:annotation>
+          <xs:documentation>Запись найдена</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="record_was_not_found">
+        <xs:annotation>
+          <xs:documentation>Запись на найдена</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="performanceType">
+    <xs:annotation>
+      <xs:documentation>Статус исполнения запроса</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="undefined">
+        <xs:annotation>
+          <xs:documentation>Статус не определен</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="registered_in_service">
+        <xs:annotation>
+          <xs:documentation>Зарегистрирован сервисом</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="sent_to_registrar">
+        <xs:annotation>
+          <xs:documentation>Отправлено в ЗАГС</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="forwarded">
+        <xs:annotation>
+          <xs:documentation>Перенаправлено ЗАГСом в другой ЗАГС</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="answered">
+        <xs:annotation>
+          <xs:documentation>Получен ответ</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

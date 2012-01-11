@@ -1,0 +1,153 @@
+Making install in src
+make[1]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/src'
+Making install in xmlpull
+make[2]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/src/xmlpull'
+make[3]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/src/xmlpull'
+test -z "/usr/local/lib" || /bin/mkdir -p "/usr/local/lib"
+ /bin/bash ../../libtool   --mode=install /usr/bin/install -c   libwsdlpullxml.la '/usr/local/lib'
+libtool: install: /usr/bin/install -c .libs/libwsdlpullxml.so.1.0.24 /usr/local/lib/libwsdlpullxml.so.1.0.24
+libtool: install: (cd /usr/local/lib && { ln -s -f libwsdlpullxml.so.1.0.24 libwsdlpullxml.so.1 || { rm -f libwsdlpullxml.so.1 && ln -s libwsdlpullxml.so.1.0.24 libwsdlpullxml.so.1; }; })
+libtool: install: (cd /usr/local/lib && { ln -s -f libwsdlpullxml.so.1.0.24 libwsdlpullxml.so || { rm -f libwsdlpullxml.so && ln -s libwsdlpullxml.so.1.0.24 libwsdlpullxml.so; }; })
+libtool: install: /usr/bin/install -c .libs/libwsdlpullxml.lai /usr/local/lib/libwsdlpullxml.la
+libtool: finish: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/X11R6/bin:/sbin" ldconfig -n /usr/local/lib
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+test -z "/usr/local/include/wsdlpull/xml" || /bin/mkdir -p "/usr/local/include/wsdlpull/xml"
+ /usr/bin/install -c -m 644 ../../src/xmlpull/XmlPullParser.h ../../src/xmlpull/XmlSerializer.h ../../src/xmlpull/XmlUtils.h ../../src/xmlpull/Qname.h ../../src/xmlpull/XmlDoc.h ../../src/xmlpull/ConfigFile.h ../../src/xmlpull/XmlPullParserException.h ../../src/xmlpull/osdir.h ../../src/xmlpull/wsdlpull_export.h '/usr/local/include/wsdlpull/xml'
+make[3]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/src/xmlpull'
+make[2]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/src/xmlpull'
+Making install in schemaparser
+make[2]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/src/schemaparser'
+make[3]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/src/schemaparser'
+test -z "/usr/local/lib" || /bin/mkdir -p "/usr/local/lib"
+ /bin/bash ../../libtool   --mode=install /usr/bin/install -c   libwsdlpullschema.la '/usr/local/lib'
+libtool: install: (cd /home/anton/Downloads/wsdlpull-1.24/src/schemaparser; /bin/bash /home/anton/Downloads/wsdlpull-1.24/libtool  --tag CXX --mode=relink g++ -g -Wall ../../src/xmlpull/libwsdlpullxml.la -version-info 1:24:0 -o libwsdlpullschema.la -rpath /usr/local/lib libwsdlpullschema_la-SchemaParser.lo libwsdlpullschema_la-SchemaValidator.lo libwsdlpullschema_la-SimpleType.lo libwsdlpullschema_la-ComplexType.lo libwsdlpullschema_la-TypesTable.lo libwsdlpullschema_la-TypeContainer.lo libwsdlpullschema_la-SchemaDebug.lo libwsdlpullschema_la-Group.lo libwsdlpullschema_la-ContentModel.lo )
+libtool: relink: g++ -shared -nostdlib /usr/lib/gcc/x86_64-linux-gnu/4.6.1/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.6.1/crtbeginS.o  .libs/libwsdlpullschema_la-SchemaParser.o .libs/libwsdlpullschema_la-SchemaValidator.o .libs/libwsdlpullschema_la-SimpleType.o .libs/libwsdlpullschema_la-ComplexType.o .libs/libwsdlpullschema_la-TypesTable.o .libs/libwsdlpullschema_la-TypeContainer.o .libs/libwsdlpullschema_la-SchemaDebug.o .libs/libwsdlpullschema_la-Group.o .libs/libwsdlpullschema_la-ContentModel.o   -L/usr/local/lib -lwsdlpullxml -lpthread -L/usr/lib/gcc/x86_64-linux-gnu/4.6.1 -L/usr/lib/gcc/x86_64-linux-gnu/4.6.1/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.6.1/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.6.1/../../.. -lstdc++ -lm -lc -lgcc_s /usr/lib/gcc/x86_64-linux-gnu/4.6.1/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/4.6.1/../../../x86_64-linux-gnu/crtn.o    -Wl,-soname -Wl,libwsdlpullschema.so.1 -o .libs/libwsdlpullschema.so.1.0.24
+libtool: install: /usr/bin/install -c .libs/libwsdlpullschema.so.1.0.24T /usr/local/lib/libwsdlpullschema.so.1.0.24
+libtool: install: (cd /usr/local/lib && { ln -s -f libwsdlpullschema.so.1.0.24 libwsdlpullschema.so.1 || { rm -f libwsdlpullschema.so.1 && ln -s libwsdlpullschema.so.1.0.24 libwsdlpullschema.so.1; }; })
+libtool: install: (cd /usr/local/lib && { ln -s -f libwsdlpullschema.so.1.0.24 libwsdlpullschema.so || { rm -f libwsdlpullschema.so && ln -s libwsdlpullschema.so.1.0.24 libwsdlpullschema.so; }; })
+libtool: install: /usr/bin/install -c .libs/libwsdlpullschema.lai /usr/local/lib/libwsdlpullschema.la
+libtool: finish: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/X11R6/bin:/sbin" ldconfig -n /usr/local/lib
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+test -z "/usr/local/include/wsdlpull/schemaparser" || /bin/mkdir -p "/usr/local/include/wsdlpull/schemaparser"
+ /usr/bin/install -c -m 644 ../../src/schemaparser/SchemaParser.h ../../src/schemaparser/SchemaValidator.h ../../src/schemaparser/XSDType.h ../../src/schemaparser/SimpleType.h ../../src/schemaparser/ComplexType.h ../../src/schemaparser/TypeContainer.h ../../src/schemaparser/Element.h ../../src/schemaparser/Attribute.h ../../src/schemaparser/SchemaParserException.h ../../src/schemaparser/TypesTable.h ../../src/schemaparser/Schema.h ../../src/schemaparser/Group.h ../../src/schemaparser/ContentModel.h ../../src/schemaparser/AttributeGroup.h ../../src/schemaparser/Constraint.h ../../src/schemaparser/Annotation.h '/usr/local/include/wsdlpull/schemaparser'
+make[3]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/src/schemaparser'
+make[2]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/src/schemaparser'
+Making install in wsdlparser
+make[2]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/src/wsdlparser'
+make[3]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/src/wsdlparser'
+test -z "/usr/local/lib" || /bin/mkdir -p "/usr/local/lib"
+ /bin/bash ../../libtool   --mode=install /usr/bin/install -c   libwsdlpull.la '/usr/local/lib'
+libtool: install: (cd /home/anton/Downloads/wsdlpull-1.24/src/wsdlparser; /bin/bash /home/anton/Downloads/wsdlpull-1.24/libtool  --tag CXX --mode=relink g++ -g -Wall ../../src/xmlpull/libwsdlpullxml.la ../../src/schemaparser/libwsdlpullschema.la -version-info 1:24:0 -o libwsdlpull.la -rpath /usr/local/lib libwsdlpull_la-WsdlParser.lo libwsdlpull_la-WsdlDebug.lo libwsdlpull_la-Message.lo libwsdlpull_la-WsdlElement.lo libwsdlpull_la-WsdlInvoker.lo libwsdlpull_la-Soap.lo )
+libtool: relink: g++ -shared -nostdlib /usr/lib/gcc/x86_64-linux-gnu/4.6.1/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.6.1/crtbeginS.o  .libs/libwsdlpull_la-WsdlParser.o .libs/libwsdlpull_la-WsdlDebug.o .libs/libwsdlpull_la-Message.o .libs/libwsdlpull_la-WsdlElement.o .libs/libwsdlpull_la-WsdlInvoker.o .libs/libwsdlpull_la-Soap.o   -L/home/anton/Downloads/wsdlpull-1.24/src/xmlpull/.libs -L/usr/local/lib -lwsdlpullschema -lwsdlpullxml -lpthread -L/usr/lib/gcc/x86_64-linux-gnu/4.6.1 -L/usr/lib/gcc/x86_64-linux-gnu/4.6.1/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.6.1/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.6.1/../../.. -lstdc++ -lm -lc -lgcc_s /usr/lib/gcc/x86_64-linux-gnu/4.6.1/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/4.6.1/../../../x86_64-linux-gnu/crtn.o    -Wl,-soname -Wl,libwsdlpull.so.1 -o .libs/libwsdlpull.so.1.0.24
+libtool: install: /usr/bin/install -c .libs/libwsdlpull.so.1.0.24T /usr/local/lib/libwsdlpull.so.1.0.24
+libtool: install: (cd /usr/local/lib && { ln -s -f libwsdlpull.so.1.0.24 libwsdlpull.so.1 || { rm -f libwsdlpull.so.1 && ln -s libwsdlpull.so.1.0.24 libwsdlpull.so.1; }; })
+libtool: install: (cd /usr/local/lib && { ln -s -f libwsdlpull.so.1.0.24 libwsdlpull.so || { rm -f libwsdlpull.so && ln -s libwsdlpull.so.1.0.24 libwsdlpull.so; }; })
+libtool: install: /usr/bin/install -c .libs/libwsdlpull.lai /usr/local/lib/libwsdlpull.la
+libtool: finish: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/X11R6/bin:/sbin" ldconfig -n /usr/local/lib
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+test -z "/usr/local/include/wsdlpull/wsdlparser" || /bin/mkdir -p "/usr/local/include/wsdlpull/wsdlparser"
+make[3]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/src/wsdlparser'
+make[2]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/src/wsdlparser'
+Making install in schemas
+make[2]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/src/schemas'
+make[3]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/src/schemas'
+make[3]: Nothing to be done for `install-exec-am'.
+test -z "/usr/local/share/wsdlpull" || /bin/mkdir -p "/usr/local/share/wsdlpull"
+ /usr/bin/install -c -m 644 soap.xsd wsdl10.xsd mime.xsd http.xsd soap-encoding.xsd schema.dtd schema.conf soap12.xsd soap-encoding12.xsd '/usr/local/share/wsdlpull'
+make[3]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/src/schemas'
+make[2]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/src/schemas'
+Making install in tools
+make[2]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/src/tools'
+make[3]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/src/tools'
+test -z "/usr/local/bin" || /bin/mkdir -p "/usr/local/bin"
+  /bin/bash ../../libtool   --mode=install /usr/bin/install -c wsdlpull wsdlpull-schema '/usr/local/bin'
+libtool: install: /usr/bin/install -c .libs/wsdlpull /usr/local/bin/wsdlpull
+libtool: install: /usr/bin/install -c .libs/wsdlpull-schema /usr/local/bin/wsdlpull-schema
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/src/tools'
+make[2]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/src/tools'
+make[2]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/src'
+make[3]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/src'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/src'
+make[2]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/src'
+make[1]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/src'
+Making install in tests
+make[1]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/tests'
+Making install in schema
+make[2]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/tests/schema'
+make[3]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/tests/schema'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/tests/schema'
+make[2]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/tests/schema'
+Making install in wsdl
+make[2]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/tests/wsdl'
+make[3]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/tests/wsdl'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/tests/wsdl'
+make[2]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/tests/wsdl'
+make[2]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/tests'
+make[3]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/tests'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/tests'
+make[2]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/tests'
+make[1]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/tests'
+Making install in docs
+make[1]: Entering directory `/home/anton/Downloads/wsdlpull-1.24/docs'
+doxygen doxy.conf
+make[1]: Leaving directory `/home/anton/Downloads/wsdlpull-1.24/docs'
