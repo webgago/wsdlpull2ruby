@@ -16,40 +16,75 @@ topdir = /home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1
 hdrdir = /home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1
 arch_hdrdir = /home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/$(arch)
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
+
 prefix = $(DESTDIR)/home/anton/.rvm/rubies/ruby-1.9.3-p0
+
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
+
 exec_prefix = $(prefix)
+
 vendorhdrdir = $(rubyhdrdir)/vendor_ruby
+
 sitehdrdir = $(rubyhdrdir)/site_ruby
+
 rubyhdrdir = $(includedir)/$(RUBY_BASE_NAME)-$(ruby_version)
+
 vendordir = $(rubylibprefix)/vendor_ruby
+
 sitedir = $(rubylibprefix)/site_ruby
+
 ridir = $(datarootdir)/$(RI_BASE_NAME)
+
 mandir = $(datarootdir)/man
+
 localedir = $(datarootdir)/locale
+
 libdir = $(exec_prefix)/lib
+
 psdir = $(docdir)
+
 pdfdir = $(docdir)
+
 dvidir = $(docdir)
+
 htmldir = $(docdir)
+
 infodir = $(datarootdir)/info
+
 docdir = $(datarootdir)/doc/$(PACKAGE)
+
 oldincludedir = $(DESTDIR)/usr/include
+
 includedir = $(prefix)/include
+
 localstatedir = $(prefix)/var
+
 sharedstatedir = $(prefix)/com
+
 sysconfdir = $(prefix)/etc
+
 datadir = $(datarootdir)
+
 datarootdir = $(prefix)/share
+
 libexecdir = $(exec_prefix)/libexec
+
 sbindir = $(exec_prefix)/sbin
+
 bindir = $(exec_prefix)/bin
+
 rubylibdir = $(rubylibprefix)/$(ruby_version)
+
 archdir = $(rubylibdir)/$(arch)
+
 sitelibdir = $(sitedir)/$(ruby_version)
+
 sitearchdir = $(sitelibdir)/$(sitearch)
+
 vendorlibdir = $(vendordir)/$(ruby_version)
+
 vendorarchdir = $(vendorlibdir)/$(sitearch)
+
 
 NULLCMD = :
 
@@ -58,7 +93,7 @@ CXX = g++
 LIBRUBY = $(LIBRUBY_SO)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
 LIBRUBYARG_SHARED = -Wl,-R -Wl,$(libdir) -L$(libdir) -l$(RUBY_SO_NAME)
-LIBRUBYARG_STATIC = -Wl,-R -Wl,$(libdir) -L$(libdir) -l$(RUBY_SO_NAME)-static
+LIBRUBYARG_STATIC = -Wl,-R -Wl,/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -lruby-static
 OUTFLAG = -o 
 COUTFLAG = -o 
 
@@ -70,13 +105,13 @@ warnflags = -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-m
 CFLAGS   = -fPIC $(cflags)  -fPIC 
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS =   $(DEFS) $(cppflags) -I/usr/local/include/wsdlpull
-CXXFLAGS = $(CFLAGS) $(cxxflags)
-ldflags  = -L.  -rdynamic -Wl,-export-dynamic
+CPPFLAGS =   $(DEFS) $(cppflags)  -I/home/anton/.rvm/gems/ruby-1.9.3-p0@global/gems/rice-1.4.3/ruby/lib/include -I/usr/local/include/wsdlpull
+CXXFLAGS = $(CFLAGS)  -Wall -g
+ldflags  = -L.  -rdynamic -Wl,-export-dynamic  -L/home/anton/.rvm/gems/ruby-1.9.3-p0@global/gems/rice-1.4.3/ruby/lib/lib
 dldflags = 
 ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags)
-LDSHARED = $(CC) -shared
+LDSHARED = g++ -shared
 LDSHAREDXX = $(CXX) -shared
 AR = ar
 EXEEXT = 
@@ -102,6 +137,9 @@ COPY = cp
 
 preload = 
 
+
+CXX = g++
+
 libpath = . $(libdir) /usr/local/lib/wsdlpull
 LIBPATH =  -L. -L$(libdir) -Wl,-R$(libdir) -L/usr/local/lib/wsdlpull -Wl,-R/usr/local/lib/wsdlpull
 DEFFILE = 
@@ -114,7 +152,7 @@ extout =
 extout_prefix = 
 target_prefix = /test
 LOCAL_LIBS = 
-LIBS = $(LIBRUBYARG_SHARED) -lwsdlpullxml -lwsdlpullschema -lwsdlpull  -lpthread -lrt -ldl -lcrypt -lm   -lc
+LIBS = -lwsdlpullxml -lwsdlpullschema -lwsdlpull -lrice -Wl,-R -Wl,/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -lruby -lpthread -lrt -ldl -lcrypt -lm   -lc
 SRCS = foo.cpp
 OBJS = foo.o
 TARGET = foo

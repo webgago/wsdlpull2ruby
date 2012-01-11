@@ -1,4 +1,7 @@
-#include "ruby.h"
+//#include "rice/Class.hpp"
+#include "rice/Data_Type.hpp"
+#include "rice/Constructor.hpp"
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -13,10 +16,9 @@
 using namespace std;
 using namespace Schema;
 using namespace WsdlPull;
+using namespace Rice;
 
-
-VALUE cTest;
-
+SchemaParser * sp;
 
 void test() {
     string uri = "/home/anton/projects/ezags-client/public/WSDL/rZAGS/InquiryService.xsd";
@@ -58,7 +60,26 @@ void test() {
     cout<<std::endl;
 }
 
+Object initialize(Object self, Object rb_string){
+    self.iv_set("@foo", 42);
+    return to_ruby(42);
+}
+
+Object instance(Object self){
+    return self.iv_get("@foo");
+}
+
+
 extern "C" void Init_foo() {
-  test();
-  cTest = rb_define_class("Test", rb_cObject);
+  //test();
+
+  Data_Type<SchemaParser> rb_SchemaParser =
+    define_class<SchemaParser>("SchemaParser")
+    .define_constructor(Constructor<SchemaParser, string>())
+    .define_method("parse", &SchemaParser::parseSchemaTag)
+    .define_method("elements", &SchemaParser::getElements)
+    .define_method("namespace", &SchemaParser::getNamespace);
+
+  //rb_define_method(cSchemaParser, "initialize", &initialize, 1);
+  //rb_define_method(cSchemaParser, "instance", &instance, 1);
 }

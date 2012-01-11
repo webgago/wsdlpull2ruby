@@ -26,7 +26,16 @@
       <file leaf-file-name="foo.cpp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/foo.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="5" selection-start="711" selection-end="711" vertical-scroll-proportion="0.19381107">
+            <state line="71" column="0" selection-start="1828" selection-end="1828" vertical-scroll-proportion="0.51140064">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="extconfig.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/extconfig.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="19" selection-start="19" selection-end="19" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -53,8 +62,8 @@
       <list>
         <option value="/usr/local/include/wsdlpull/schemaparser/SchemaParser.h" />
         <option value="$PROJECT_DIR$/Makefile" />
-        <option value="$PROJECT_DIR$/extconfig.rb" />
         <option value="$PROJECT_DIR$/schema.cpp" />
+        <option value="$PROJECT_DIR$/extconfig.rb" />
         <option value="$PROJECT_DIR$/test/foo.cpp" />
       </list>
     </option>
@@ -363,13 +372,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/extconfig.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="42" selection-start="464" selection-end="464" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/schema.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="153" column="6" selection-start="3899" selection-end="3952" vertical-scroll-proportion="0.0">
@@ -377,9 +379,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/extconfig.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="19" selection-start="19" selection-end="19" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/foo.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="5" selection-start="711" selection-end="711" vertical-scroll-proportion="0.19381107">
+        <state line="71" column="0" selection-start="1828" selection-end="1828" vertical-scroll-proportion="0.51140064">
           <folding />
         </state>
       </provider>

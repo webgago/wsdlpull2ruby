@@ -1,6 +1,7 @@
-find_library: checking for SchemaParser() in -lwsdlpull... -------------------- no
+have_library: checking for main() in -lrice... -------------------- yes
 
-"gcc -o conftest -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/x86_64-linux -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/ruby/backward -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1 -I.    -I/usr/local/include/wsdlpull  -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -Wl,-R/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/usr/local/lib/wsdlpull -Wl,-R/usr/local/lib/wsdlpull -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+/home/anton/.rvm/gems/ruby-1.9.3-p0@global/gems/rice-1.4.3/ruby/lib/mkmf-rice.rb:139: Use RbConfig instead of obsolete and deprecated Config.
+"g++ -o conftest -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/x86_64-linux -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/ruby/backward -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1 -I.     -I/home/anton/.rvm/gems/ruby-1.9.3-p0@global/gems/rice-1.4.3/ruby/lib/include  -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Werror=pointer-arith -Werror=write-strings -Werror=declaration-after-statement -Werror=implicit-function-declaration conftest.c  -L. -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -Wl,-R/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L.  -rdynamic -Wl,-export-dynamic  -L/home/anton/.rvm/gems/ruby-1.9.3-p0@global/gems/rice-1.4.3/ruby/lib/lib     -Wl,-R -Wl,/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -8,10 +9,23 @@ checked program was:
 3: int main() {return 0;}
 /* end */
 
-"gcc -o conftest -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/x86_64-linux -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/ruby/backward -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1 -I.    -I/usr/local/include/wsdlpull  -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -Wl,-R/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/usr/local/lib/wsdlpull -Wl,-R/usr/local/lib/wsdlpull -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -lruby -lwsdlpull  -lpthread -lrt -ldl -lcrypt -lm   -lc"
-conftest.c: In function ‘t’:
-conftest.c:5:53: error: ‘SchemaParser’ undeclared (first use in this function)
-conftest.c:5:53: note: each undeclared identifier is reported only once for each function it appears in
+"g++ -o conftest -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/x86_64-linux -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/ruby/backward -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1 -I.     -I/home/anton/.rvm/gems/ruby-1.9.3-p0@global/gems/rice-1.4.3/ruby/lib/include  -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Werror=pointer-arith -Werror=write-strings -Werror=declaration-after-statement -Werror=implicit-function-declaration conftest.c  -L. -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -Wl,-R/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L.  -rdynamic -Wl,-export-dynamic  -L/home/anton/.rvm/gems/ruby-1.9.3-p0@global/gems/rice-1.4.3/ruby/lib/lib     -Wl,-R -Wl,/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -lruby -lrice  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+/* end */
+
+--------------------
+
+find_library: checking for SchemaParser() in -lwsdlpull... -------------------- no
+
+"g++ -o conftest -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/x86_64-linux -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/ruby/backward -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1 -I.     -I/home/anton/.rvm/gems/ruby-1.9.3-p0@global/gems/rice-1.4.3/ruby/lib/include -I/usr/local/include/wsdlpull  -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Werror=pointer-arith -Werror=write-strings -Werror=declaration-after-statement -Werror=implicit-function-declaration conftest.c  -L. -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -Wl,-R/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/usr/local/lib/wsdlpull -Wl,-R/usr/local/lib/wsdlpull -L.  -rdynamic -Wl,-export-dynamic  -L/home/anton/.rvm/gems/ruby-1.9.3-p0@global/gems/rice-1.4.3/ruby/lib/lib    -lrice  -Wl,-R -Wl,/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -lruby -lwsdlpull -lrice  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘int t()’:
+conftest.c:5:53: error: ‘SchemaParser’ was not declared in this scope
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -21,12 +35,9 @@ checked program was:
 5: int t() { void ((*volatile p)()); p = (void ((*)()))SchemaParser; return 0; }
 /* end */
 
-"gcc -o conftest -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/x86_64-linux -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/ruby/backward -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1 -I.    -I/usr/local/include/wsdlpull  -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -Wl,-R/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/usr/local/lib/wsdlpull -Wl,-R/usr/local/lib/wsdlpull -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -lruby -lwsdlpull  -lpthread -lrt -ldl -lcrypt -lm   -lc"
-conftest.c: In function ‘t’:
-conftest.c:5:1: warning: implicit declaration of function ‘SchemaParser’ [-Wimplicit-function-declaration]
-/tmp/cc1EzLF8.o: In function `t':
-/home/anton/lib/ruby_exts/test/conftest.c:5: undefined reference to `SchemaParser'
-collect2: ld returned 1 exit status
+"g++ -o conftest -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/x86_64-linux -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1/ruby/backward -I/home/anton/.rvm/rubies/ruby-1.9.3-p0/include/ruby-1.9.1 -I.     -I/home/anton/.rvm/gems/ruby-1.9.3-p0@global/gems/rice-1.4.3/ruby/lib/include -I/usr/local/include/wsdlpull  -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Werror=pointer-arith -Werror=write-strings -Werror=declaration-after-statement -Werror=implicit-function-declaration conftest.c  -L. -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -Wl,-R/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/usr/local/lib/wsdlpull -Wl,-R/usr/local/lib/wsdlpull -L.  -rdynamic -Wl,-export-dynamic  -L/home/anton/.rvm/gems/ruby-1.9.3-p0@global/gems/rice-1.4.3/ruby/lib/lib    -lrice  -Wl,-R -Wl,/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -L/home/anton/.rvm/rubies/ruby-1.9.3-p0/lib -lruby -lwsdlpull -lrice  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘int t()’:
+conftest.c:5:24: error: ‘SchemaParser’ was not declared in this scope
 checked program was:
 /* begin */
 1: #include "ruby.h"

@@ -1,4 +1,4 @@
-require "mkmf"
+require 'mkmf-rice'
 
 $CPPFLAGS << " -I%s" % ["/usr/local/include/wsdlpull"]
 
