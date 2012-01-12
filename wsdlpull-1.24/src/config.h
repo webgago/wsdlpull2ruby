@@ -93,7 +93,7 @@
 #define VERSION "1.24"
 
 /* libcurl library */
-/* #undef WITH_CURL */
+#define WITH_CURL 1
 
 /* Define if using the dmalloc debugging malloc package */
 /* #undef WITH_DMALLOC */

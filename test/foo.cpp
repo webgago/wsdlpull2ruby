@@ -69,9 +69,82 @@ Object instance(Object self){
     return self.iv_get("@foo");
 }
 
+class Test
+{
+    public:
+      Test(const std::string & uri);
+      std::string getUri();
+      std::string getNamespace();
+      std::string instance();
+
+    private:
+      std::string uri_;
+      SchemaParser * sp;
+      std::list < std::string > elements;
+};
+
+Test::Test(const std::string & uri)
+{
+  sp = new SchemaParser(uri);
+  sp->parseSchemaTag();
+  uri_ = uri;
+}
+
+std::string
+Test::instance()
+{
+    std::string elemName;
+
+    Schema::Element element;
+
+    const Schema::SchemaParser::ElementList & el = sp->getElements();
+
+    int n = 0;
+
+    for ( Schema::SchemaParser::ElementList::const_iterator eli= el.begin();
+          eli!=el.end();
+          eli++,n++)
+    {
+        if (n !=0)
+          elements.push_back(eli->getName());
+    }
+
+    n = 1;
+
+    n++; // locate the element in the list (first element bydefault is <schema> so skip it
+    for ( Schema::SchemaParser::ElementList::const_iterator eli1= el.begin();
+        eli1!=el.end() && n ;
+        eli1++,n--) element = *eli1;
+
+
+    ostringstream oss (ostringstream::out);
+
+    SchemaValidator * sv = new SchemaValidator(sp, oss);
+    sv->instance(element.getName(),(Schema::Type)element.getType());
+    return oss.str();
+}
+
+std::string
+Test::getNamespace()
+{
+  return sp->getNamespace();
+}
+
+std::string
+Test::getUri()
+{
+  return uri_;
+}
 
 extern "C" void Init_foo() {
   //test();
+
+  Data_Type<Test> rb_cTest =
+    define_class<Test>("Test")
+    .define_constructor(Constructor<Test, std::string>())
+    .define_method("uri", &Test::getUri)
+    .define_method("instance", &Test::instance)
+    .define_method("namespace", &Test::getNamespace);
 
   Data_Type<SchemaParser> rb_SchemaParser =
     define_class<SchemaParser>("SchemaParser")
@@ -79,7 +152,4 @@ extern "C" void Init_foo() {
     .define_method("parse", &SchemaParser::parseSchemaTag)
     .define_method("elements", &SchemaParser::getElements)
     .define_method("namespace", &SchemaParser::getNamespace);
-
-  //rb_define_method(cSchemaParser, "initialize", &initialize, 1);
-  //rb_define_method(cSchemaParser, "instance", &instance, 1);
 }
